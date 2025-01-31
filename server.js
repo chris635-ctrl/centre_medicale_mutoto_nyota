@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require("express"); 
 const cors = require("cors");
 const sequelize = require("./config");
 const authRoutes = require("./routes/auth");
@@ -9,7 +9,10 @@ app.use(cors());
 
 app.use("/api/auth", authRoutes);
 
-app.listen(5000, async () => {
+// Utilise le port fourni par l'environnement ou 5000 en fallback
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, async () => {
   await sequelize.sync();
-  console.log("Serveur en écoute sur le port 5000");
+  console.log(`Serveur en écoute sur le port ${PORT}`);
 });
